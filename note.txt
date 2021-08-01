@@ -1,0 +1,12 @@
+1.划分目录结构
+2.先将底部tabbar设计好 ——> 路由映射
+3.引入vant框架库，npm 安装vant 跟按需引入插件 局部手
+动按需引入
+4. swipe轮播图  问题1：网络请求数据返回类型为obj类型。通过props传给子组件，
+子组件banner 类型为array数组类型，传值时报错，需将obj类型转为数组再props传子组件
+问题2：ue渲染机制中：异步数据先显示初始数据，再显示带数据的数据，渲染时
+先加载异步的数据，而banner还是空的，但是界面可以显示。渲染后，banner才加载好，
+5.  写推荐页面，props传值，v-for遍历recommend数组，要加:key，否则报错  
+6.  写tabcontrol页面，props传值，动态绑定class样式。
+7.写goodslist页面。request.js先请求网络，home请求的数据props给goodslist页面
+再讲数据渲染出来，学习了flex弹性布局
