@@ -18,7 +18,7 @@ export default {
         }
     },
     created(){
-        console.log(this.goodlistitem);
+        // console.log(this.goodlistitem);
     }
 }
 </script>

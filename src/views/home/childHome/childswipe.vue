@@ -8,7 +8,7 @@
             
             <!-- 轮播图 -->
                 <swiper>
-                        <img idnex="1" width="100%"   slot="pho1" :src="bannerlist[0].image923" >
+                        <img @load="imageload" idnex="1" width="100%"   slot="pho1" :src="bannerlist[0].image923" >
                         <img idnex="2" width="100%" slot="pho2" :src="bannerlist[1].image923" >
                         <img idnex="3" width="100%" slot="pho3" :src="bannerlist[2].image923" >
                         <img idnex="4" width="100%" slot="pho4" :src="bannerlist[3].image923" >
@@ -36,7 +36,9 @@ export default {
         }
     },
     methods:{
-
+        imageload(){
+            this.$emit('imageload')
+        }
     },
     uodated(){
         

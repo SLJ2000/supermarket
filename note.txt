@@ -10,3 +10,17 @@
 6.  写tabcontrol页面，props传值，动态绑定class样式。
 7.写goodslist页面。request.js先请求网络，home请求的数据props给goodslist页面
 再讲数据渲染出来，学习了flex弹性布局
+8.封装BScroll ， 绑定样式 用this.$refs.xxx来绑定，不能用dom获取样式
+目前未解决home页面 重构BScroll时 商品不显示问题,解决商品不显示原因，v-for动态数据渲染
+未完成时 BScroll已经开始执行，所以剩下的数据显示不出来，应该在updated生命周期
+中调用BScroll里的refresh，重新执行BScroll
+9.  backtop组件如果需要点击事件，就得加修饰符.native  点击backtop 回到顶部
+滚动内容超过阈值则显示backtop   上拉加载进行网络请求
+10. 节流对非常频繁操作的问题进行防抖操作   
+11. tabcontrol 吸顶效果，监听BScroll当scroll超过阈值则让tabcontrol显示
+问题2.监听轮播图片是否加载完成，加载完才能调用计算tabcontrol的高度再判断是否
+超过阈值，用@load进行监听
+12. 问题1：home页面被销毁，keep-live解决  问题2：当home页面还在滚动的时候切换
+路由再回到home页面时，会出错。原因scroll还在继续，解决：用keep-alive的activated
+事件，重新刷新BSscroll refresh. 问题3：当用户滚动过程中切换路由，再回来home位置
+会回到顶部用户滚动的位置被重置~未解决
