@@ -4,7 +4,7 @@
             <div slot="center">首页</div>
         </navbar>
 
-        <tabcontrol v-show="isshow" class="tabcontrol"  @change="changegoodslist" :title="['流行','新款','精选']"></tabcontrol>
+        <tabcontrol v-show="isshow" :ischoose="ischoose" class="tabcontrol"  @change="changegoodslist" :title="['流行','新款','精选']"></tabcontrol>
 
         <BScroll 
         class="wrapper" ref="BScroll"  
@@ -12,7 +12,7 @@
             <childswipe @imageload="imageload" class="childswipe" :bannerlist="bannerlist"></childswipe>
             <recommend :recommend="recommend"></recommend>
             <!-- 子组件传值给父组件 -->
-            <tabcontrol ref="tabcontrol" @change="changegoodslist" :title="['流行','新款','精选']"></tabcontrol>
+            <tabcontrol ref="tabcontrol" :ischoose="ischoose" @change="changegoodslist" :title="['流行','新款','精选']"></tabcontrol>
 
             <goodslist v-if="ischoose==0" :goodslist="goods['pop'].list"></goodslist>
             <goodslist v-else-if="ischoose==1" :goodslist="goods['new'].list"></goodslist>
@@ -58,7 +58,8 @@ export default {
             isshow:false,
             offsetTop:0,
             once:false,
-            scrollY:0,
+            curreindex:0,
+            scrollY:0
         }
     },
     created(){
@@ -105,11 +106,14 @@ export default {
                 }
             })
         },
-
+        // 监听用户点击tabcontrol,改变样式
         changegoodslist(e){
             console.log(e);
             this.ischoose = e
             console.log(this.ischoose);
+            if(this.scrollY < -this.offsetTop){
+                this.$refs.BScroll.bs.scrollTo(0,-this.offsetTop,0)
+            }
         },
         // 组件点击事件
         backtopclick(){
@@ -117,7 +121,7 @@ export default {
             // ref 也可以获取组件信息
             console.log(this.$refs.BScroll);
         },
-
+        // 监听用户滑动时
         contentscroll(position){
             this.scrollY = position.y
             if(position.y < -(this.offsetTop-44)){
@@ -136,13 +140,12 @@ export default {
                 this.gethomedata('sell')
             }
         },
-
+        // 图片加载完计算图片高度
         imageload(){
             console.log('图片加载完');
             // 当图片加载完成 再计算tabcontrol的高度
             this.tabcontrolheight()
         },
-
         tabcontrolheight(){
             console.log(this.$refs.tabcontrol.$el.offsetTop); 
             // 获取tabcontrol 的高度，用el元素获取
@@ -174,8 +177,8 @@ export default {
     },
 
     deactivated(){
-        console.log(this.$refs.BScroll.bs);
-        console.log(this.scrollY);
+        // console.log(this.$refs.BScroll.bs);
+        // console.log(this.scrollY);
         // this.scrollY = this.$refs.BScroll.scroll.y
     }
 }

@@ -8,10 +8,14 @@
             
             <!-- 轮播图 -->
                 <swiper>
-                        <img @load="imageload" idnex="1" width="100%"   slot="pho1" :src="bannerlist[0].image923" >
+                    <swiperitem v-for="item,index in bannerlist" :key="index">
+                        <img width="100%" @load="imageload" :src="item.image923" alt="">
+                    </swiperitem>
+
+                        <!-- <img @load="imageload" idnex="1" width="100%"   slot="pho1" :src="bannerlist[0].image923" >
                         <img idnex="2" width="100%" slot="pho2" :src="bannerlist[1].image923" >
                         <img idnex="3" width="100%" slot="pho3" :src="bannerlist[2].image923" >
-                        <img idnex="4" width="100%" slot="pho4" :src="bannerlist[3].image923" >
+                        <img idnex="4" width="100%" slot="pho4" :src="bannerlist[3].image923" > -->
                 </swiper>
         </div>
 
@@ -19,11 +23,12 @@
 </template>
 <script>
 import swiper from "components/common/swiper/swiper.vue"
-
+import swiperitem from "components/common/swiper/swiperitem.vue"
 export default {
     name:"childswipe",
     components:{
         swiper,
+        swiperitem
     },
     data(){
         return {

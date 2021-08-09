@@ -1,6 +1,6 @@
 <template>
     <div class="control">
-        <div :class="{active: index == curreindex}" @click="click(index)" v-for="(item ,index)  in title" :key="index"  class="item" >
+        <div :class="{active: index == ischoose}" @click="click(index)" v-for="(item ,index)  in title" :key="index"  class="item" >
             <span >{{item}}</span>
         </div>
     </div>
@@ -12,6 +12,12 @@ export default {
         title:Array,
         default(){
             return []
+        },
+        ischoose:{
+            type:Number,
+            default(){
+                return 0
+            }
         }
     },
     data(){

@@ -37,7 +37,7 @@ export default {
         itemclick(){
             console.log(this.path)
             console.log(this.$router)
-            this.$router.push('/'+this.path)
+            this.$router.replace('/'+this.path)
             // 向父组件发射
             this.$emit('click',this.path)
             // alert(this.path)

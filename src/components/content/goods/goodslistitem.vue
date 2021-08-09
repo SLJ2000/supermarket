@@ -1,5 +1,5 @@
 <template>
-        <div class="box">
+        <div @click="detailclick" class="box">
             <img class="imgbox" :src="goodlistitem.show.img" alt="">
             <span class="span">{{goodlistitem.title}}</span>
             <span >价格：￥{{goodlistitem.price}}</span>
@@ -19,6 +19,13 @@ export default {
     },
     created(){
         // console.log(this.goodlistitem);
+    },
+    methods:{
+        detailclick(){
+            console.log("跳转详情页");
+            // 用query传商品ID，再根据ID调用详细资料
+            this.$router.push("/detail/"+this.goodlistitem.iid )
+        }
     }
 }
 </script>

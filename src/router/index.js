@@ -1,5 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// 避免了到当前位置的冗余导航
+const originalPush = VueRouter.prototype.replace
+VueRouter.prototype.replace = function replace(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
 
 Vue.use(VueRouter);
 
@@ -31,6 +36,12 @@ const routes = [
     name: "mine",
     component: () =>
       import("@/views/mine/mine.vue"),
+  },
+  {
+    path: "/detail/:id", //动态路由
+    name: "detail",
+    component: () =>
+      import("@/views/detail/detail.vue"),
   },
   // {
   //   path: "/about",
